@@ -2,10 +2,13 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 import youtubeDownloadService from '../services/youtubeDownload'
 
 async function download(
-  request: FastifyRequest<{ Body: { links: string[] } }>,
+  request: FastifyRequest<{ Body: { links: string[]; downloadPath: string } }>,
   reply: FastifyReply
 ) {
-  await youtubeDownloadService.downloadYoutubeToMp3(request.body.links)
+  const musicList = await youtubeDownloadService.downloadYoutubeToMp3(
+    request.body
+  )
+  reply.status(200).send({ message: `${musicList.length} music downloaded` })
 }
 
 export default { download }
