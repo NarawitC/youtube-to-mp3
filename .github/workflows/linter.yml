@@ -23,7 +23,11 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn ci
 
       - name: Run Prettier
-        run: npx prettier --write .
+        uses: wearerequired/lint-action@v1
+        with:
+          # eslint: true
+          prettier: true
+          auto_fix: true
