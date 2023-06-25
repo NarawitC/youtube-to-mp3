@@ -3,7 +3,7 @@ import ytdl from 'ytdl-core'
 
 async function downloadYoutubeToMp3({
   links,
-  downloadPath = './',
+         downloadPath = './',
 }: {
   links: string[]
   downloadPath: string
