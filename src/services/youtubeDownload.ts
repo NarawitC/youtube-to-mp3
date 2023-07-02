@@ -1,5 +1,6 @@
 import fs from 'fs'
 import ytdl from 'ytdl-core'
+import { v4 as uuidv4 } from 'uuid'
 
 async function downloadYoutubeToMp3({
   links,
@@ -12,7 +13,8 @@ async function downloadYoutubeToMp3({
     const download = async (link: string) => {
       try {
         const videoInfo = await ytdl.getInfo(link)
-        const title = videoInfo.videoDetails.title.replace(/[ |/\\.]/g, '')
+        // const title = videoInfo.videoDetails.title.replace(/[ |/\\.]/g, '')
+        const title = uuidv4()
         return new Promise((resolve, reject) => {
           const writeStream = fs.createWriteStream(
             `${downloadPath}${title}.mp3`
